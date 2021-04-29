@@ -1,0 +1,7 @@
+3rd拷贝到项目中
+system拷贝到cmake_root里面，比如：C:\Program Files\CMake\share\cmake-3.20\Modules
+
+包含最上层的global_config.cmake即可
+不要直接引用_windows的cmake文件！！！
+不要直接引用_windows的cmake文件！！！
+不要直接引用_windows的cmake文件！！！
