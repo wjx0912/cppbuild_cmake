@@ -1,4 +1,5 @@
 编译zstd
 编译poco
 编译folly
+编译protobuf
 编译opencv
