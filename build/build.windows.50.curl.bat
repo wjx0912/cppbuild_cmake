@@ -2,18 +2,18 @@
 @echo off
 rm build -fr
 
-cmake  -B  build\Win32       -G "Visual Studio 16 2019"  -A Win32    -DCMAKE_USE_OPENSSL=ON
+cmake  -B  _build_\Win32       -G "Visual Studio 16 2019"  -A Win32    -DCMAKE_USE_OPENSSL=ON
 IF %ERRORLEVEL% NEQ 0 GOTO STOP_JOB
-cmake --build build\Win32    --target ALL_BUILD
+cmake --build _build_\Win32    --target ALL_BUILD
 IF %ERRORLEVEL% NEQ 0 GOTO STOP_JOB
-cmake --build build\Win32    --target ALL_BUILD   --config Release
+cmake --build _build_\Win32    --target ALL_BUILD   --config Release
 IF %ERRORLEVEL% NEQ 0 GOTO STOP_JOB
 
-cmake  -B  build\x64         -G "Visual Studio 16 2019"  -A x64      -DCMAKE_USE_OPENSSL=ON
+cmake  -B  _build_\x64         -G "Visual Studio 16 2019"  -A x64      -DCMAKE_USE_OPENSSL=ON
 IF %ERRORLEVEL% NEQ 0 GOTO STOP_JOB
-cmake --build build\x64      --target ALL_BUILD
+cmake --build _build_\x64      --target ALL_BUILD
 IF %ERRORLEVEL% NEQ 0 GOTO STOP_JOB
-cmake --build build\x64      --target ALL_BUILD   --config Release
+cmake --build _build_\x64      --target ALL_BUILD   --config Release
 IF %ERRORLEVEL% NEQ 0 GOTO STOP_JOB
 
 ::=====================================
