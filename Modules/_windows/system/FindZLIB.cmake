@@ -55,6 +55,20 @@ A user may set ``ZLIB_ROOT`` to a zlib installation root to tell this
 module where to look.
 #]=======================================================================]
 
+# modify by wyt, 2021.4.28
+set (PC_ZLIB_INCLUDE_DIR "D:/sdk/cmake_build/vs2019/zlib-1.2.11")
+if(CMAKE_CL_64)
+    set (PC_ZLIB_LIBRARY_RELEASE "D:/sdk/cmake_build/vs2019/zlib-1.2.11/_build_/x64/Release/")
+    set (PC_ZLIB_LIBRARY_DEBUG   "D:/sdk/cmake_build/vs2019/zlib-1.2.11/_build_/x64/Debug/")
+    message("PC_ZLIB_LIBRARY_RELEASE of x64: ${PC_ZLIB_LIBRARY_RELEASE}")
+    message("PC_ZLIB_LIBRARY_DEBUG   of x64: ${PC_ZLIB_LIBRARY_DEBUG}")
+else()
+    set (PC_ZLIB_LIBRARY_RELEASE "D:/sdk/cmake_build/vs2019/zlib-1.2.11/_build_/Win32/Release/")
+    set (PC_ZLIB_LIBRARY_DEBUG   "D:/sdk/cmake_build/vs2019/zlib-1.2.11/_build_/Win32/Debug/")
+    message("PC_ZLIB_LIBRARY_RELEASE of Win32: ${PC_ZLIB_LIBRARY_RELEASE}")
+    message("PC_ZLIB_LIBRARY_DEBUG   of Win32: ${PC_ZLIB_LIBRARY_DEBUG}")
+ENDIF()
+
 set(_ZLIB_SEARCHES)
 
 # Search ZLIB_ROOT first if it is set.
@@ -77,14 +91,14 @@ set(ZLIB_NAMES_DEBUG zd zlibd zdlld zlibd1 zlib1d zlibstaticd)
 
 # Try each search configuration.
 foreach(search ${_ZLIB_SEARCHES})
-  find_path(ZLIB_INCLUDE_DIR NAMES zlib.h ${${search}} PATH_SUFFIXES include)
+  find_path(ZLIB_INCLUDE_DIR NAMES zlib.h ${${search}} PATH_SUFFIXES include HINTS ${PC_ZLIB_INCLUDE_DIR})
 endforeach()
 
 # Allow ZLIB_LIBRARY to be set manually, as the location of the zlib library
 if(NOT ZLIB_LIBRARY)
   foreach(search ${_ZLIB_SEARCHES})
-    find_library(ZLIB_LIBRARY_RELEASE NAMES ${ZLIB_NAMES} NAMES_PER_DIR ${${search}} PATH_SUFFIXES lib)
-    find_library(ZLIB_LIBRARY_DEBUG NAMES ${ZLIB_NAMES_DEBUG} NAMES_PER_DIR ${${search}} PATH_SUFFIXES lib)
+    find_library(ZLIB_LIBRARY_RELEASE NAMES ${ZLIB_NAMES} NAMES_PER_DIR ${${search}} PATH_SUFFIXES lib        HINTS ${PC_ZLIB_LIBRARY_RELEASE})
+    find_library(ZLIB_LIBRARY_DEBUG NAMES ${ZLIB_NAMES_DEBUG} NAMES_PER_DIR ${${search}} PATH_SUFFIXES lib    HINTS ${PC_ZLIB_LIBRARY_DEBUG})
   endforeach()
 
   include(${CMAKE_CURRENT_LIST_DIR}/SelectLibraryConfigurations.cmake)
@@ -95,16 +109,6 @@ unset(ZLIB_NAMES)
 unset(ZLIB_NAMES_DEBUG)
 
 mark_as_advanced(ZLIB_INCLUDE_DIR)
-
-# modify by wyt, 2021.4.28
-set (ZLIB_INCLUDE_DIR "D:/sdk/cmake_build/vs2019/zlib-1.2.11")
-if(CMAKE_CL_64)
-    set (ZLIB_LIBRARY "D:/sdk/cmake_build/vs2019/zlib-1.2.11/build/x64/Release/zlib.lib")
-    message("ZLIB_LIBRARY of x64: ${ZLIB_LIBRARY}")
-else()
-    set (ZLIB_LIBRARY "D:/sdk/cmake_build/vs2019/zlib-1.2.11/build/Win32/Release/zlib.lib")
-    message("ZLIB_LIBRARY of Win32: ${ZLIB_LIBRARY}")
-ENDIF()
 
 if(ZLIB_INCLUDE_DIR AND EXISTS "${ZLIB_INCLUDE_DIR}/zlib.h")
     file(STRINGS "${ZLIB_INCLUDE_DIR}/zlib.h" ZLIB_H REGEX "^#define ZLIB_VERSION \"[^\"]*\"$")
