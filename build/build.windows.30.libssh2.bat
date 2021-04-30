@@ -1,6 +1,6 @@
 ::ÎÄ¼þÂ·¾¶£ºD:\sdk\cmake_build\vs2019\libssh2
 @echo off
-rm build -fr
+rm _build_ -fr
 
 cmake  -B  _build_\Win32       -G "Visual Studio 16 2019"  -A Win32    -DBUILD_SHARED_LIBS=ON
 IF %ERRORLEVEL% NEQ 0 GOTO STOP_JOB

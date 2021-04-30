@@ -1,6 +1,6 @@
 ::文件路径：D:\sdk\cmake_build\vs2019\zlib-1.2.11
 @echo off
-rm build -fr
+rm _build_ -fr
 
 cmake  -B  _build_\Win32       -G "Visual Studio 16 2019"  -A Win32
 IF %ERRORLEVEL% NEQ 0 GOTO STOP_JOB
