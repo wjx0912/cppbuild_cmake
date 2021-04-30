@@ -26,21 +26,19 @@
 # LIBSSH2_INCLUDE_DIR - the libssh2 include directory
 # LIBSSH2_LIBRARY - the libssh2 library name
 
-find_path(LIBSSH2_INCLUDE_DIR libssh2.h)
-
-find_library(LIBSSH2_LIBRARY NAMES ssh2 libssh2)
-
-
 # modify by wyt, 2021.4.28
-set (LIBSSH2_INCLUDE_DIR "D:/sdk/cmake_build/vs2019/libssh2/include")
+set (PC_LIBSSH2_INCLUDE_DIR "D:/sdk/cmake_build/vs2019/libssh2/include/")
 if("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "x64")
-    set (LIBSSH2_LIBRARY "D:/sdk/cmake_build/vs2019/libssh2/build/x64/src/Release/libssh2.lib")
-    message("LIBSSH2_LIBRARY of x64: ${LIBSSH2_LIBRARY}")
+    set (PC_LIBSSH2_LIBRARY "D:/sdk/cmake_build/vs2019/libssh2/_build_/x64/src/Release/")
+    message("PC_LIBSSH2_LIBRARY of x64: ${PC_LIBSSH2_LIBRARY}")
 else()
-    set (LIBSSH2_LIBRARY "D:/sdk/cmake_build/vs2019/libssh2/build/Win32/src/Release/libssh2.lib")
-    message("LIBSSH2_LIBRARY of Win32: ${LIBSSH2_LIBRARY}")
+    set (PC_LIBSSH2_LIBRARY "D:/sdk/cmake_build/vs2019/libssh2/_build_/Win32/src/Release/")
+    message("PC_LIBSSH2_LIBRARY of Win32: ${PC_LIBSSH2_LIBRARY}")
 ENDIF()
 
+find_path(LIBSSH2_INCLUDE_DIR libssh2.h  HINTS ${PC_LIBSSH2_INCLUDE_DIR})
+
+find_library(LIBSSH2_LIBRARY NAMES ssh2 libssh2  HINTS ${PC_LIBSSH2_LIBRARY})
 
 if(LIBSSH2_INCLUDE_DIR)
   file(STRINGS "${LIBSSH2_INCLUDE_DIR}/libssh2.h" libssh2_version_str REGEX "^#define[\t ]+LIBSSH2_VERSION[\t ]+\"(.*)\"")
