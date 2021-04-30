@@ -41,9 +41,9 @@ Result Variables
 # modify by wyt, 2021.4.30
 set (PC_Zstd_INCLUDE_DIRS "D:/sdk/cmake_build/vs2019/zstd-1.4.9/lib/")
 if(CMAKE_CL_64)
-    set (PC_Zstd_LIBRARY_DIRS "D:/sdk/cmake_build/vs2019/zstd-1.4.9/build/cmake/_build_/x64/lib/Release/")
+    set (PC_Zstd_LIBRARY_DIRS "D:/sdk/cmake_build/vs2019/zstd-1.4.9/build/cmake/_build_/x64_Dynamic/lib/Release/")
 else()
-    set (PC_Zstd_LIBRARY_DIRS "D:/sdk/cmake_build/vs2019/zstd-1.4.9/build/cmake/_build_/Win32/lib/Release/")
+    set (PC_Zstd_LIBRARY_DIRS "D:/sdk/cmake_build/vs2019/zstd-1.4.9/build/cmake/_build_/Win32_Dynamic/lib/Release/")
 ENDIF()
 message("PC_Zstd_INCLUDE_DIRS: ${PC_Zstd_INCLUDE_DIRS}")
 message("PC_Zstd_LIBRARY_DIRS: ${PC_Zstd_LIBRARY_DIRS}")

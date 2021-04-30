@@ -29,10 +29,10 @@
 # modify by wyt, 2021.4.28
 set (PC_LIBSSH2_INCLUDE_DIR "D:/sdk/cmake_build/vs2019/libssh2/include/")
 if("${CMAKE_GENERATOR_PLATFORM}" STREQUAL "x64")
-    set (PC_LIBSSH2_LIBRARY "D:/sdk/cmake_build/vs2019/libssh2/_build_/x64/src/Release/")
+    set (PC_LIBSSH2_LIBRARY "D:/sdk/cmake_build/vs2019/libssh2/_build_/x64_Dynamic/src/Release/")
     message("PC_LIBSSH2_LIBRARY of x64: ${PC_LIBSSH2_LIBRARY}")
 else()
-    set (PC_LIBSSH2_LIBRARY "D:/sdk/cmake_build/vs2019/libssh2/_build_/Win32/src/Release/")
+    set (PC_LIBSSH2_LIBRARY "D:/sdk/cmake_build/vs2019/libssh2/_build_/Win32_Dynamic/src/Release/")
     message("PC_LIBSSH2_LIBRARY of Win32: ${PC_LIBSSH2_LIBRARY}")
 ENDIF()
 
