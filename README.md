@@ -45,3 +45,34 @@ https://github.com/wjx0912/cmake_modules
 
 
 
+一、c++库收集：
+7z,zlib,zstd,bzip,
+cximage,ImageMagick,openjpeg,libpng,freetype,
+boost,poco,folly,
+openssl,openssl3,
+curl,
+json,tinyxml,sqlite(mysql),orm,libxml,xerces,
+protobuf,flatbuffer,thrift,fast,
+icu4c,libidn,iconv,
+lua,python,v8,
+opencv,cuda,tbb,openmp,
+redis,
+spdlog,glog,
+gtest,cppunit,
+libevent,
+ffmpeg,libx264,xvidcore,
+opengl,glu,glut,
+java,jni,
+其它不常用库：caffe,crashrtp,eigen,hikang_sdk,dskinlite,bass,themida,win32xx,opencl,openblas,tracetool,
+二、问题
+(1)include/lib/bin 二进制兼容，vs版本：2015,2017,2019
+(2)库支持debug&release, MT&MTD:  FindMylib之前可以定义变量强制，也可以根据cmake参数自适应
+(3)项目支持debug&release, MT&MTD: 和库匹配
+(4)复用cmake自带modules，不能复用的要能disable
+(5)Find的库里面可以预定义宏，三方库;  c++warning控制；
+(6)add bin文件夹到cmake生成的项目文件里面（避免人工拷贝win32&x64 dll/bin到path里面）
+(7)调试可以跟踪到lib里面
+(8)同一个库多版本
+(9)源码，文档，.cmake文件；怎么组织；ci,cd
+
+优先编译：curl,zlib,openssl,boost,opencv,sqlite,tinyxml,protobuf,lua,spdlog,
